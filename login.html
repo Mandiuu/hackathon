@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Roots - Register">
+    <meta property="og:description" content="Create a new account on Roots and join the community.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <title>Roots - Create an Account</title>
+    <link rel="icon" href="root_icon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #F6F3EA;
+            margin: 0;
+            font-size: 20px;
+            font-family: 'Barlow', 'Times New Roman', Times, serif;
+            text-rendering: optimizeLegibility;
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+        }
+
+        .header {
+            padding: 3em 0;
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Bungee Shade', Georgia, serif;
+            font-weight: bold;
+            font-size: 4em;
+            line-height: 1;
+        }
+
+        .subhead {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #f05349;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .footer {
+            background: #F6F3EA;
+            text-align: center;
+            font-size: 0.8em;
+            padding: 4em 0;
+        }
+
+        /* Position the Home button */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* Ensure spacing between buttons */
+        .home-button button {
+            margin-left: 10px;
+        }
+
+        /* Styling for generated User ID message */
+        .message {
+            font-size: 1em;
+            color: #23967F;
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+
+        /* Styling for error message */
+        .error-message {
+            color: red;
+            font-size: 1em;
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Roots</h1>
+        <p class="subhead">Join the Roots community and grow with us by creating a new account.</p>
+        <div class="home-button">
+            <button id="home-btn">Home</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <form id="register-form">
+            <h2>Create Your Account</h2>
+
+            <label for="name">First Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your first name" required>
+
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+
+            <label for="last-name">Gender at Birth</label>
+            <input type="text" id="last-name" name="last-name" placeholder="But options" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="place-of-birth">Place of Birth</label>
+            <input type="text" id="place-of-birth" name="place-of-birth" placeholder="Enter your city and country" required>
+
+            <button type="submit">Create Account</button>
+
+            <!-- Container for generated User ID or error messages -->
+            <div id="message-container"></div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Roots. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        // Function to generate a user ID
+        function generateUserId(firstName, lastName) {
+            if (firstName && lastName) {
+                const initials = firstName.charAt(0).toLowerCase() + lastName.charAt(0).toLowerCase();
+                const randomNumber = Math.floor(1000 + Math.random() * 9000); // Generates a random 4-digit number
+                return initials + randomNumber;
+            }
+            return '';
+        }
+
+        // Function to format the date as MM/DD/YYYY
+        function formatDateToMMDDYYYY(dateString) {
+            const dateObj = new Date(dateString);
+            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // getMonth() is 0-based
+            const day = dateObj.getDate().toString().padStart(2, '0');
+            const year = dateObj.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+
+        // Handle the Home button click and redirect to the homepage
+        document.getElementById('home-btn').addEventListener('click', function () {
+            window.location.href = 'index.html';  // Redirect to homepage (index.html)
+        });
+
+        // Handle form submission to create a new user
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Clear previous messages
+            document.getElementById('message-container').innerHTML = '';
+
+            // Collect form data
+            const firstName = document.getElementById('name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const dob = document.getElementById('dob').value;
+            const formattedDob = formatDateToMMDDYYYY(dob);  // Format date to MM/DD/YYYY
+            const placeOfBirth = document.getElementById('place-of-birth').value;
+
+            // Generate user ID
+            const userId = generateUserId(firstName, lastName);
+
+            if (userId) {
+                console.log("Generated User ID: " + userId);
+
+                // Display User ID inside the form along with formatted DOB
+                const userIdMessage = document.createElement('p');
+                userIdMessage.className = 'message';
+                userIdMessage.textContent = `Your User ID is: ${userId} and your DOB is ${formattedDob}`;
+                document.getElementById('message-container').appendChild(userIdMessage);
+
+                // Simulate user creation (no actual backend)
+                console.log('User created successfully with ID:', userId);
+            } else {
+                // Display error message inside the form
+                const errorMessage = document.createElement('p');
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = 'Please enter a valid first name and last name.';
+                document.getElementById('message-container').appendChild(errorMessage);
+            }
+        });
+    </script>
+</body>
+
+</html>

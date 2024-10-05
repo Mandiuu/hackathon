@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Roots - Profile">
+    <meta property="og:description" content="Complete your health profile on Roots.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <title>Roots - Profile</title>
+    <link rel="icon" href="root_icon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #F6F3EA;
+            margin: 0;
+            font-size: 20px;
+            font-family: 'Barlow', 'Times New Roman', Times, serif;
+            text-rendering: optimizeLegibility;
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+        }
+
+        .header {
+            padding: 3em 0;
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Bungee Shade', Georgia, serif;
+            font-weight: bold;
+            font-size: 4em;
+            line-height: 1;
+        }
+
+        .subhead {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-buttons button {
+            margin-left: 10px;
+            background-color: #f05349;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .profile-info {
+            background-color: #f6f3ea;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        .profile-info2 {
+            background-color: #f6f3ea;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: -90px;
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-question {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #f05349;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .footer {
+            background: #F6F3EA;
+            text-align: center;
+            font-size: 0.8em;
+            padding: 4em 0;
+        }
+
+        .autocomplete-suggestions {
+            border: 1px solid #ddd;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        .autocomplete-suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .autocomplete-suggestion:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for cloned condition boxes */
+        .separate-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Hidden summary by default */
+        #summary {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Profile</h1>
+
+        <!-- Top-right buttons -->
+        <div class="auth-buttons">
+            <button id="home-btn">Home</button>
+            <button id="forum-btn">Forum</button>
+            <button id="logout-btn">Log Out</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="profile-info">
+            <p><strong>Welcome,</strong> Dua Lipa</p>
+        </div>
+
+        <div class="profile-info2">
+            <p><strong>Your family ID is <strong>DL1234</strong>. Share it with your family <a href="http://www.example.com">here</a></strong></p>
+        </div>
+
+        <!-- Adoption, Twin, and Sibling Questions -->
+        <form id="profile-form">
+            <div class="form-question">
+                <label>Were you adopted?</label><br>
+                <input type="radio" id="adopted-yes" name="adopted" value="Yes">
+                <label for="adopted-yes">Yes</label><br>
+                <input type="radio" id="adopted-no" name="adopted" value="No">
+                <label for="adopted-no">No</label><br>
+            </div>
+
+            <div class="form-question">
+                <label>Were you born a twin?</label><br>
+                <input type="radio" id="twin-no" name="twin" value="No" required>
+                <label for="twin-no">No</label><br>
+                <input type="radio" id="twin-identical" name="twin" value="Identical (Same)">
+                <label for="twin-identical">Yes, Identical (Same)</label><br>
+                <input type="radio" id="twin-fraternal" name="twin" value="Fraternal">
+                <label for="twin-fraternal">Yes, Fraternal (Not Identical)</label><br>
+            </div>
+
+            <div class="form-question">
+                <label>Do you have siblings?</label><br>
+                <input type="radio" id="siblings-yes" name="siblings" value="Yes" required>
+                <label for="siblings-yes">Yes</label><br>
+                <input type="radio" id="siblings-no" name="siblings" value="No">
+                <label for="siblings-no">No</label><br>
+
+                <div id="sibling-count" style="display: none;">
+                    <label for="num-siblings">How many siblings do you have?</label><br>
+                    <input type="number" id="num-siblings" name="num-siblings" min="1" max="20">
+                </div>
+            </div>
+
+            <div class="form-question">
+                <label>Do you have aunts?</label><br>
+                <input type="radio" id="aunts-yes" name="aunts" value="Yes" required>
+                <label for="aunts-yes">Yes</label><br>
+                <input type="radio" id="aunts-no" name="aunts" value="No">
+                <label for="aunts-no">No</label><br>
+
+                <div id="aunt-count" style="display: none;">
+                    <label for="num-aunts">How many aunts do you have?</label><br>
+                    <input type="number" id="num-aunts" name="num-aunts" min="1" max="20">
+                </div>
+            </div>
+
+            <div class="form-question">
+                <label>Do you have uncles?</label><br>
+                <input type="radio" id="uncles-yes" name="uncles" value="Yes" required>
+                <label for="uncles-yes">Yes</label><br>
+                <input type="radio" id="uncles-no" name="uncles" value="No">
+                <label for="uncles-no">No</label><br>
+
+                <div id="uncle-count" style="display: none;">
+                    <label for="num-uncles">How many uncles do you have?</label><br>
+                    <input type="number" id="num-uncles" name="num-uncles" min="1" max="20">
+                </div>
+            </div>
+
+            <div class="form-question">
+                <label>Do you have children?</label><br>
+                <input type="radio" id="children-yes" name="children" value="Yes">
+                <label for="children-yes">Yes</label><br>
+                <input type="radio" id="children-no" name="children" value="No">
+                <label for="children-no">No</label><br>
+
+                <div id="children-count" style="display: none;">
+                    <label for="num-children">How many children do you have?</label><br>
+                    <input type="number" id="num-children" name="num-children" min="1" max="10">
+                </div>
+            </div>
+
+            <div class="form-question">
+                <label>Are you married?</label><br>
+                <input type="radio" id="married-yes" name="married" value="Yes">
+                <label for="married-yes">Yes</label><br>
+                <input type="radio" id="married-no" name="married" value="No">
+                <label for="married-no">No</label><br>
+            </div>
+
+            <!-- Health Conditions Section -->
+            <div id="health-condition-section">
+                <div class="separate-box">
+                    <label for="diseases">Health Conditions</label><br>
+                    <input type="text" id="diseases" name="diseases" placeholder="Enter any diseases" required>
+
+                    <label for="age-at-diagnosis">Age at Diagnosis</label><br>
+                    <select id="age-at-diagnosis" name="age-at-diagnosis">
+                        <option value="Newborn">Newborn</option>
+                        <option value="Infancy">Infancy</option>
+                        <option value="Childhood">Childhood</option>
+                        <option value="Adolescence">Adolescence</option>
+                        <option value="Specify Year">Specify Year</option>
+                    </select>
+
+                    <input type="number" id="specific-year" name="specific-year" placeholder="Enter year of diagnosis" style="display:none;">
+
+                    <label for="treatment">Treatment/Medication</label><br>
+                    <input type="text" id="treatment" name="treatment" placeholder="Enter any treatments or medications">
+                </div>
+            </div>
+
+            <!-- Button to add another health condition -->
+            <button type="button" id="add-condition">Add Another Health Condition</button><br><br>
+
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Summary -->
+        <div id="summary">
+            <h2>Health Profile Summary</h2>
+            <div id="summary-content"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Roots. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        const diseasesList = ["Diabetes", "Hypertension", "Asthma", "Cancer", "Heart Disease", "COVID-19", "Arthritis"];
+
+        // Function to handle autocomplete for disease inputs
+        function bindAutocomplete(diseasesInput) {
+            diseasesInput.addEventListener('input', function () {
+                const value = this.value.toLowerCase();
+                const suggestions = diseasesList.filter(disease => disease.toLowerCase().startsWith(value));
+
+                clearSuggestions(diseasesInput);
+                if (value && suggestions.length) {
+                    showSuggestions(suggestions, diseasesInput);
+                }
+            });
+        }
+
+        // Function to show suggestions
+        function showSuggestions(suggestions, diseasesInput) {
+            const suggestionsContainer = document.createElement('div');
+            suggestionsContainer.classList.add('autocomplete-suggestions');
+
+            suggestions.forEach(suggestion => {
+                const suggestionDiv = document.createElement('div');
+                suggestionDiv.classList.add('autocomplete-suggestion');
+                suggestionDiv.innerText = suggestion;
+
+                suggestionDiv.addEventListener('click', function () {
+                    diseasesInput.value = suggestion;
+                    clearSuggestions(diseasesInput);
+                });
+
+                suggestionsContainer.appendChild(suggestionDiv);
+            });
+
+            diseasesInput.parentNode.appendChild(suggestionsContainer);
+        }
+
+        function clearSuggestions(diseasesInput) {
+            const existingSuggestions = diseasesInput.parentNode.querySelector('.autocomplete-suggestions');
+            if (existingSuggestions) {
+                existingSuggestions.remove();
+            }
+        }
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.matches('.autocomplete-suggestion')) {
+                document.querySelectorAll('.autocomplete-suggestions').forEach(suggestions => suggestions.remove());
+            }
+        });
+
+        // Bind autocomplete to the initial diseases input
+        bindAutocomplete(document.getElementById('diseases'));
+
+        // Add another health condition
+        document.getElementById('add-condition').addEventListener('click', function () {
+            const conditionBox = document.querySelector('.separate-box').cloneNode(true);
+
+            // Clear the fields in the cloned condition box
+            conditionBox.querySelector('#diseases').value = '';
+            conditionBox.querySelector('#age-at-diagnosis').value = '';
+            conditionBox.querySelector('#specific-year').value = '';
+            conditionBox.querySelector('#treatment').value = '';
+            conditionBox.querySelector('#specific-year').style.display = 'none'; 
+
+            // Append the cloned condition box
+            document.getElementById('health-condition-section').appendChild(conditionBox);
+
+            // Rebind autocomplete for the new diseases input in the cloned condition box
+            bindAutocomplete(conditionBox.querySelector('#diseases'));
+        });
+
+        // Show or hide the specific year input based on age at diagnosis selection
+        document.getElementById('health-condition-section').addEventListener('change', function (e) {
+            if (e.target.name === 'age-at-diagnosis') {
+                const specificYearInput = e.target.parentNode.querySelector('#specific-year');
+                if (e.target.value === 'Specify Year') {
+                    specificYearInput.style.display = 'block';
+                } else {
+                    specificYearInput.style.display = 'none';
+                }
+            }
+        });
+
+        // Show sibling, aunt, uncle counts if selected
+        document.getElementById('siblings-yes').addEventListener('click', function () {
+            document.getElementById('sibling-count').style.display = 'block';
+        });
+        document.getElementById('siblings-no').addEventListener('click', function () {
+            document.getElementById('sibling-count').style.display = 'none';
+        });
+
+        document.getElementById('aunts-yes').addEventListener('click', function () {
+            document.getElementById('aunt-count').style.display = 'block';
+        });
+        document.getElementById('aunts-no').addEventListener('click', function () {
+            document.getElementById('aunt-count').style.display = 'none';
+        });
+
+        document.getElementById('uncles-yes').addEventListener('click', function () {
+            document.getElementById('uncle-count').style.display = 'block';
+        });
+        document.getElementById('uncles-no').addEventListener('click', function () {
+            document.getElementById('uncle-count').style.display = 'none';
+        });
+
+        document.getElementById('children-yes').addEventListener('click', function () {
+            document.getElementById('children-count').style.display = 'block';
+        });
+        document.getElementById('children-no').addEventListener('click', function () {
+            document.getElementById('children-count').style.display = 'none';
+        });
+
+        // Handle form submission
+        document.getElementById('profile-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const adopted = document.querySelector('input[name="adopted"]:checked') ? document.querySelector('input[name="adopted"]:checked').value : '';
+            const twin = document.querySelector('input[name="twin"]:checked').value;
+            const siblings = document.querySelector('input[name="siblings"]:checked').value;
+            const siblingCount = siblings === "Yes" ? document.getElementById('num-siblings').value : '0';
+            const aunts = document.querySelector('input[name="aunts"]:checked').value;
+            const auntsCount = aunts === "Yes" ? document.getElementById('num-aunts').value : '0';
+            const uncles = document.querySelector('input[name="uncles"]:checked').value;
+            const unclesCount = uncles === "Yes" ? document.getElementById('num-uncles').value : '0';
+            const children = document.querySelector('input[name="children"]:checked').value;
+            const childrenCount = children === "Yes" ? document.getElementById('num-children').value : '0';
+            const married = document.querySelector('input[name="married"]:checked').value;
+
+            let healthConditions = [];
+            document.querySelectorAll('.separate-box').forEach((box) => {
+                const diseases = box.querySelector('#diseases').value;
+                const ageAtDiagnosis = box.querySelector('#age-at-diagnosis').value;
+                const specificYear = box.querySelector('#specific-year').value;
+                const treatment = box.querySelector('#treatment').value;
+                const age = ageAtDiagnosis === 'Specify Year' ? specificYear : ageAtDiagnosis;
+
+                healthConditions.push({ disease: diseases, ageAtDiagnosis: age, treatment });
+            });
+
+            let summaryContent = `Adopted: ${adopted}<br>Twin: ${twin}<br>Siblings: ${siblings} (${siblingCount} siblings)<br>Aunts: ${aunts} (${auntsCount} aunts)<br>Uncles: ${uncles} (${unclesCount} uncles)<br>Children: ${children} (${childrenCount} children)<br>Married: ${married}<br><br>Health Conditions:<br>`;
+            healthConditions.forEach((condition, index) => {
+                summaryContent += `${index + 1}. Disease: ${condition.disease}, Age at Diagnosis: ${condition.ageAtDiagnosis}, Treatment: ${condition.treatment}<br>`;
+            });
+
+            document.getElementById('summary-content').innerHTML = summaryContent;
+            document.getElementById('summary').style.display = 'block';
+        });
+
+        // Redirect buttons
+        document.getElementById('home-btn').addEventListener('click', function () {
+            window.location.href = 'index.html';  // Redirect to homepage
+        });
+
+        document.getElementById('forum-btn').addEventListener('click', function () {
+            window.location.href = 'forum.html';  // Redirect to forum page
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', function () {
+            window.location.href = 'index.html';  // Redirect to homepage on logout
+        });
+    </script>
+</body>
+
+</html>

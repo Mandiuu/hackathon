@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Health Roots">
+    <meta property="og:description" content="Discover your family's health history and track potential genetic conditions.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary">
+    <title>Roots</title>
+    <link rel="icon" href="root_icon.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #F6F3EA;
+            margin: 0;
+            font-size: 20px;
+            font-family: 'Barlow', 'Times New Roman', Times, serif;
+            text-rendering: optimizeLegibility;
+        }
+
+        .content {
+            max-width: 640px;
+            margin: auto;
+        }
+
+        .header {
+            padding: 3em 0;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Bungee Shade', Georgia, serif;
+            font-weight: bold;
+            font-size: 8em;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .subhead {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #23967F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .family-tree {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .forum-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .forum-link a {
+            color: #23967F;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            background: #F6F3EA;
+            text-align: center;
+            font-size: 0.8em;
+            padding: 4em 0;
+        }
+
+        /* Position the buttons */
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-buttons button {
+            margin-left: 5px;  /* Reduce space between buttons */
+        }
+
+        @media (max-width: 640px) {
+            .auth-buttons {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Health Roots</h1>
+        <p class="subhead">Track your family’s health and discover potential genetic conditions.</p>
+
+        <!-- Top-right buttons -->
+        <div class="auth-buttons">
+            <button id="home-btn">Home</button>
+            <button id="create-btn">Create Account</button>
+            <button id="login-btn">Log In</button>
+            <button id="profile-btn">Profile</button>
+            <button id="forum-btn">Forum</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <form id="health-data-form">
+            <h2>Create your user!</h2>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="conditions">Health Conditions</label>
+            <input type="text" id="conditions" name="conditions" placeholder="Enter any known conditions">
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="family-tree">
+            <h2>Your Family Tree</h2>
+            <img src="family-tree-placeholder.jpg" alt="Family Tree Visualization" style="max-width: 100%;">
+        </div>
+
+        <div class="forum-link">
+            <p>Join the conversation with others who share your condition:</p>
+            <a href="forum.html">Visit the Anonymous Forum</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Family Health Roots. All Rights Reserved.</p>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Handle the button redirects to respective pages
+        document.getElementById('home-btn').addEventListener('click', function () {
+            window.location.href = 'index.html';  // Home page
+        });
+
+        document.getElementById('create-btn').addEventListener('click', function () {
+            window.location.href = 'login.html';  // Create Account page
+        });
+
+        document.getElementById('profile-btn').addEventListener('click', function () {
+            window.location.href = 'profile.html';  // Profile page
+        });
+
+        document.getElementById('forum-btn').addEventListener('click', function () {
+            window.location.href = 'forum.html';  // Forum page
+        });
+
+        // Get modal element
+        var modal = document.getElementById("loginModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("login-btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the "Log In" button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
