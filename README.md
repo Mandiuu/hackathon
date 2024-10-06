@@ -1,4 +1,4 @@
-#Know your roots#
+**Know your roots**
 
 When was the last time you discussed your family’s health history? While not common, it’s crucial to understand your roots for prevention and treatment. 
 Living with a condition can feel isolating, but with Roots, you’re not alone. We’re building a genealogical health tree that ensures anonymity and privacy, 
