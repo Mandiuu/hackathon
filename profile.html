@@ -11,7 +11,6 @@
     <title>Roots - Profile</title>
     <link rel="icon" href="root_icon.png">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
 
@@ -141,7 +140,6 @@
             background-color: #f0f0f0;
         }
 
-        /* Style for cloned condition boxes */
         .separate-box {
             background-color: #f9f9f9;
             padding: 20px;
@@ -150,12 +148,10 @@
             margin-bottom: 20px;
         }
 
-        /* Hidden summary by default */
         #summary {
             display: none;
         }
 
-        /* Styles for the summary table */
         .summary-table {
             width: 100%;
             border-collapse: collapse;
@@ -184,7 +180,6 @@
     <div class="header">
      
 
-        <!-- Top-right buttons -->
         <div class="auth-buttons">
             <button id="home-btn">Home</button>
             <button id="forum-btn">Forum</button>
@@ -311,14 +306,11 @@
                 </div>
             </div>
 
-            <!-- Button to add another health condition -->
             <button type="button" id="add-condition">Add Another Health Condition</button><br><br>
 
-            <!-- Submit button -->
             <button type="submit">Submit</button>
         </form>
 
-        <!-- Summary -->
         <div id="summary">
             <h2>Health Profile Summary</h2>
             <table class="summary-table" id="summary-table">
@@ -330,7 +322,6 @@
                     </tr>
                 </thead>
                 <tbody id="summary-content">
-                    <!-- Dynamic content will be injected here -->
                 </tbody>
             </table>
         </div>
@@ -343,19 +334,17 @@
     <script>
         let diseasesList = [];
 
-        // Function to fetch the diseases from a .txt file
         async function loadDiseases() {
             try {
                 const response = await fetch('cleaned_diseases.txt');
                 const text = await response.text();
-                diseasesList = text.split('\n').map(disease => disease.trim()).filter(disease => disease); // Clean and split lines
-                bindAutocomplete(document.getElementById('diseases')); // Bind autocomplete after loading diseases
+                diseasesList = text.split('\n').map(disease => disease.trim()).filter(disease => disease); 
+                bindAutocomplete(document.getElementById('diseases')); 
             } catch (error) {
                 console.error('Error loading diseases:', error);
             }
         }
 
-        // Function to handle autocomplete for disease inputs
         function bindAutocomplete(diseasesInput) {
             diseasesInput.addEventListener('input', function () {
                 const value = this.value.toLowerCase();
@@ -368,7 +357,6 @@
             });
         }
 
-        // Function to show suggestions
         function showSuggestions(suggestions, diseasesInput) {
             const suggestionsContainer = document.createElement('div');
             suggestionsContainer.classList.add('autocomplete-suggestions');
@@ -402,33 +390,26 @@
             }
         });
 
-        // Load diseases when the page loads
         loadDiseases();
 
-        // Add another health condition
         document.getElementById('add-condition').addEventListener('click', function () {
     const conditionBox = document.querySelector('.separate-box').cloneNode(true);
 
-    // Generate unique IDs for the new fields
     const timestamp = new Date().getTime();
     conditionBox.querySelector('#diseases').id = `diseases-${timestamp}`;
     conditionBox.querySelector('#age-at-diagnosis').id = `age-at-diagnosis-${timestamp}`;
     conditionBox.querySelector('#treatment').id = `treatment-${timestamp}`;
     
-    // Clear the fields in the cloned condition box
     conditionBox.querySelector(`#diseases-${timestamp}`).value = '';
     conditionBox.querySelector(`#age-at-diagnosis-${timestamp}`).value = '';
     conditionBox.querySelector(`#treatment-${timestamp}`).value = '';
 
-    // Append the cloned condition box
     document.getElementById('health-condition-section').appendChild(conditionBox);
 
-    // Rebind autocomplete for the new diseases input in the cloned condition box
     bindAutocomplete(conditionBox.querySelector(`#diseases-${timestamp}`));
 });
 
 
-        // Show or hide the specific year input based on age at diagnosis selection
         document.getElementById('health-condition-section').addEventListener('change', function (e) {
             if (e.target.name === 'age-at-diagnosis') {
                 const specificYearInput = e.target.parentNode.querySelector('#specific-year');
@@ -440,7 +421,6 @@
             }
         });
 
-        // Show sibling, aunt, uncle counts if selected
         document.getElementById('siblings-yes').addEventListener('click', function () {
             document.getElementById('sibling-count').style.display = 'block';
         });
@@ -470,11 +450,10 @@
         });
 
         document.getElementById('profile-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent the form from refreshing the page
+    e.preventDefault(); 
     
     const formData = {};
 
-    // Collect data from each form field
     formData.gender = document.querySelector('input[name="gender"]:checked').value;
     formData.adopted = document.querySelector('input[name="adopted"]:checked').value;
     formData.twin = document.querySelector('input[name="twin"]:checked').value;
@@ -497,11 +476,9 @@
         healthConditions.push({ diseases, ageAtDiagnosis, treatment });
     });
 
-    // Clear existing summary content
     const summaryContent = document.getElementById('summary-content');
-    summaryContent.innerHTML = ''; // Clear previous entries
+    summaryContent.innerHTML = ''; 
 
-    // Create table rows for each health condition
     healthConditions.forEach(condition => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -512,23 +489,20 @@
         summaryContent.appendChild(row);
     });
 
-    // Show summary section
     document.getElementById('summary').style.display = 'block';
 });
 
        
-
-        // Redirect buttons
         document.getElementById('home-btn').addEventListener('click', function () {
-            window.location.href = 'index.html';  // Redirect to homepage
+            window.location.href = 'index.html';  
         });
 
         document.getElementById('forum-btn').addEventListener('click', function () {
-            window.location.href = 'forum.html';  // Redirect to forum page
+            window.location.href = 'forum.html';  
         });
 
         document.getElementById('logout-btn').addEventListener('click', function () {
-            window.location.href = 'index.html';  // Redirect to homepage on logout
+            window.location.href = 'index.html';  
         });
     </script>
 </body>
