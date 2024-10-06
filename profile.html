@@ -407,21 +407,26 @@
 
         // Add another health condition
         document.getElementById('add-condition').addEventListener('click', function () {
-            const conditionBox = document.querySelector('.separate-box').cloneNode(true);
+    const conditionBox = document.querySelector('.separate-box').cloneNode(true);
 
-            // Clear the fields in the cloned condition box
-            conditionBox.querySelector('#diseases').value = '';
-            conditionBox.querySelector('#age-at-diagnosis').value = '';
-            conditionBox.querySelector('#specific-year').value = '';
-            conditionBox.querySelector('#treatment').value = '';
-            conditionBox.querySelector('#specific-year').style.display = 'none'; 
+    // Generate unique IDs for the new fields
+    const timestamp = new Date().getTime();
+    conditionBox.querySelector('#diseases').id = `diseases-${timestamp}`;
+    conditionBox.querySelector('#age-at-diagnosis').id = `age-at-diagnosis-${timestamp}`;
+    conditionBox.querySelector('#treatment').id = `treatment-${timestamp}`;
+    
+    // Clear the fields in the cloned condition box
+    conditionBox.querySelector(`#diseases-${timestamp}`).value = '';
+    conditionBox.querySelector(`#age-at-diagnosis-${timestamp}`).value = '';
+    conditionBox.querySelector(`#treatment-${timestamp}`).value = '';
 
-            // Append the cloned condition box
-            document.getElementById('health-condition-section').appendChild(conditionBox);
+    // Append the cloned condition box
+    document.getElementById('health-condition-section').appendChild(conditionBox);
 
-            // Rebind autocomplete for the new diseases input in the cloned condition box
-            bindAutocomplete(conditionBox.querySelector('#diseases'));
-        });
+    // Rebind autocomplete for the new diseases input in the cloned condition box
+    bindAutocomplete(conditionBox.querySelector(`#diseases-${timestamp}`));
+});
+
 
         // Show or hide the specific year input based on age at diagnosis selection
         document.getElementById('health-condition-section').addEventListener('change', function (e) {
@@ -464,51 +469,54 @@
             document.getElementById('children-count').style.display = 'none';
         });
 
-        // Handle form submission
         document.getElementById('profile-form').addEventListener('submit', function (e) {
-            e.preventDefault();
+    e.preventDefault(); // Prevent the form from refreshing the page
+    
+    const formData = {};
 
-            const adopted = document.querySelector('input[name="adopted"]:checked') ? document.querySelector('input[name="adopted"]:checked').value : '';
-            const twin = document.querySelector('input[name="twin"]:checked').value;
-            const siblings = document.querySelector('input[name="siblings"]:checked').value;
-            const siblingCount = siblings === "Yes" ? document.getElementById('num-siblings').value : '0';
-            const aunts = document.querySelector('input[name="aunts"]:checked').value;
-            const auntsCount = aunts === "Yes" ? document.getElementById('num-aunts').value : '0';
-            const uncles = document.querySelector('input[name="uncles"]:checked').value;
-            const unclesCount = uncles === "Yes" ? document.getElementById('num-uncles').value : '0';
-            const children = document.querySelector('input[name="children"]:checked').value;
-            const childrenCount = children === "Yes" ? document.getElementById('num-children').value : '0';
-            const married = document.querySelector('input[name="married"]:checked').value;
+    // Collect data from each form field
+    formData.gender = document.querySelector('input[name="gender"]:checked').value;
+    formData.adopted = document.querySelector('input[name="adopted"]:checked').value;
+    formData.twin = document.querySelector('input[name="twin"]:checked').value;
+    formData.siblings = document.querySelector('input[name="siblings"]:checked').value;
+    formData.siblingCount = formData.siblings === "Yes" ? document.getElementById('num-siblings').value : '0';
+    formData.aunts = document.querySelector('input[name="aunts"]:checked').value;
+    formData.auntsCount = formData.aunts === "Yes" ? document.getElementById('num-aunts').value : '0';
+    formData.uncles = document.querySelector('input[name="uncles"]:checked').value;
+    formData.unclesCount = formData.uncles === "Yes" ? document.getElementById('num-uncles').value : '0';
+    formData.children = document.querySelector('input[name="children"]:checked').value;
+    formData.childrenCount = formData.children === "Yes" ? document.getElementById('num-children').value : '0';
+    formData.married = document.querySelector('input[name="married"]:checked').value;
 
-            let healthConditions = [];
-            document.querySelectorAll('.separate-box').forEach((box) => {
-                const diseases = box.querySelector('#diseases').value;
-                const ageAtDiagnosis = box.querySelector('#age-at-diagnosis').value;
-                const specificYear = box.querySelector('#specific-year').value;
-                const treatment = box.querySelector('#treatment').value;
-                const age = ageAtDiagnosis === 'Specify Year' ? specificYear : ageAtDiagnosis;
+    let healthConditions = [];
+    document.querySelectorAll('.separate-box').forEach((box) => {
+        const diseases = box.querySelector('input[name="diseases"]').value;
+        const ageAtDiagnosis = box.querySelector('select[name="age-at-diagnosis"]').value;
+        const treatment = box.querySelector('input[name="treatment"]').value;
 
-                healthConditions.push({ disease: diseases, ageAtDiagnosis: age, treatment });
-            });
+        healthConditions.push({ diseases, ageAtDiagnosis, treatment });
+    });
 
-            // Clear existing summary content
-            const summaryContent = document.getElementById('summary-content');
-            summaryContent.innerHTML = ''; // Clear existing content
+    // Clear existing summary content
+    const summaryContent = document.getElementById('summary-content');
+    summaryContent.innerHTML = ''; // Clear previous entries
 
-            // Create table rows for each health condition
-            healthConditions.forEach(condition => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${condition.disease}</td>
-                    <td>${condition.ageAtDiagnosis}</td>
-                    <td>${condition.treatment}</td>
-                `;
-                summaryContent.appendChild(row);
-            });
+    // Create table rows for each health condition
+    healthConditions.forEach(condition => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${condition.diseases}</td>
+            <td>${condition.ageAtDiagnosis}</td>
+            <td>${condition.treatment}</td>
+        `;
+        summaryContent.appendChild(row);
+    });
 
-            // Show summary section
-            document.getElementById('summary').style.display = 'block';
-        });
+    // Show summary section
+    document.getElementById('summary').style.display = 'block';
+});
+
+       
 
         // Redirect buttons
         document.getElementById('home-btn').addEventListener('click', function () {

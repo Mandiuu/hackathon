@@ -96,6 +96,17 @@
             margin-left: 10px;
         }
 
+        input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    border: 1px solid #ddd; /* Optional: Change to a light border color */
+    width: calc(100% - 16px); /* Adjust width to account for padding */
+    padding: 8px; /* Adjust padding as needed */
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Ensure padding is included in total width */
+}
+
         /* Styling for generated User ID message */
         .message {
             font-size: 1em;
