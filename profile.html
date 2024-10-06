@@ -155,12 +155,34 @@
             display: none;
         }
 
+        /* Styles for the summary table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .summary-table th {
+            background-color: #23967F;
+            color: white;
+        }
+
+        .summary-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <h1>Profile</h1>
+     
 
         <!-- Top-right buttons -->
         <div class="auth-buttons">
@@ -172,15 +194,25 @@
 
     <div class="content">
         <div class="profile-info">
-            <p><strong>Welcome,</strong> Dua Lipa</p>
+            <p><strong>Welcome!</strong></p>
         </div>
 
         <div class="profile-info2">
-            <p><strong>Your family ID is <strong>DL1234</strong>. Share it with your family <a href="http://www.example.com">here</a></strong></p>
+            <p><strong>Fill this form with your medical history.</strong></p>
+            <p><strong>Your family ID is <strong>DL1234</strong>. Share it with them <a href="http://www.example.com">here</a></strong></p>
         </div>
 
-        <!-- Adoption, Twin, and Sibling Questions -->
         <form id="profile-form">
+            <div class="form-question">
+                <label>What was your gender at birth?</label><br>
+                <input type="radio" id="gender-yes" name="gender" value="Female">
+                <label for="gender-yes">Female</label><br>
+                <input type="radio" id="gender-no" name="gender" value="Male">
+                <label for="gender-no">Male</label><br>
+                <input type="radio" id="gender-m" name="gender" value="NA">
+                <label for="gender-m">Prefers not to answer</label><br>
+            </div>
+
             <div class="form-question">
                 <label>Were you adopted?</label><br>
                 <input type="radio" id="adopted-yes" name="adopted" value="Yes">
@@ -259,25 +291,23 @@
                 <label for="married-no">No</label><br>
             </div>
 
-            <!-- Health Conditions Section -->
             <div id="health-condition-section">
                 <div class="separate-box">
                     <label for="diseases">Health Conditions</label><br>
                     <input type="text" id="diseases" name="diseases" placeholder="Enter any diseases" required>
 
+                    <label for="treatment">Treatment/Medication</label><br>
+                    <input type="text" id="treatment" name="treatment" placeholder="Enter any treatments or medications" style="margin-bottom: 20px;">
+                    
                     <label for="age-at-diagnosis">Age at Diagnosis</label><br>
-                    <select id="age-at-diagnosis" name="age-at-diagnosis">
+                    <select id="age-at-diagnosis" name="age-at-diagnosis" style="margin-bottom: 20px;">
                         <option value="Newborn">Newborn</option>
                         <option value="Infancy">Infancy</option>
                         <option value="Childhood">Childhood</option>
                         <option value="Adolescence">Adolescence</option>
+                        <option value="Adulthood">Adulthood</option>
                         <option value="Specify Year">Specify Year</option>
                     </select>
-
-                    <input type="number" id="specific-year" name="specific-year" placeholder="Enter year of diagnosis" style="display:none;">
-
-                    <label for="treatment">Treatment/Medication</label><br>
-                    <input type="text" id="treatment" name="treatment" placeholder="Enter any treatments or medications">
                 </div>
             </div>
 
@@ -291,7 +321,18 @@
         <!-- Summary -->
         <div id="summary">
             <h2>Health Profile Summary</h2>
-            <div id="summary-content"></div>
+            <table class="summary-table" id="summary-table">
+                <thead>
+                    <tr>
+                        <th>Disease</th>
+                        <th>Age at Diagnosis</th>
+                        <th>Treatment</th>
+                    </tr>
+                </thead>
+                <tbody id="summary-content">
+                    <!-- Dynamic content will be injected here -->
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -300,7 +341,19 @@
     </div>
 
     <script>
-        const diseasesList = ["Diabetes", "Hypertension", "Asthma", "Cancer", "Heart Disease", "COVID-19", "Arthritis"];
+        let diseasesList = [];
+
+        // Function to fetch the diseases from a .txt file
+        async function loadDiseases() {
+            try {
+                const response = await fetch('cleaned_diseases.txt');
+                const text = await response.text();
+                diseasesList = text.split('\n').map(disease => disease.trim()).filter(disease => disease); // Clean and split lines
+                bindAutocomplete(document.getElementById('diseases')); // Bind autocomplete after loading diseases
+            } catch (error) {
+                console.error('Error loading diseases:', error);
+            }
+        }
 
         // Function to handle autocomplete for disease inputs
         function bindAutocomplete(diseasesInput) {
@@ -349,8 +402,8 @@
             }
         });
 
-        // Bind autocomplete to the initial diseases input
-        bindAutocomplete(document.getElementById('diseases'));
+        // Load diseases when the page loads
+        loadDiseases();
 
         // Add another health condition
         document.getElementById('add-condition').addEventListener('click', function () {
@@ -438,12 +491,22 @@
                 healthConditions.push({ disease: diseases, ageAtDiagnosis: age, treatment });
             });
 
-            let summaryContent = `Adopted: ${adopted}<br>Twin: ${twin}<br>Siblings: ${siblings} (${siblingCount} siblings)<br>Aunts: ${aunts} (${auntsCount} aunts)<br>Uncles: ${uncles} (${unclesCount} uncles)<br>Children: ${children} (${childrenCount} children)<br>Married: ${married}<br><br>Health Conditions:<br>`;
-            healthConditions.forEach((condition, index) => {
-                summaryContent += `${index + 1}. Disease: ${condition.disease}, Age at Diagnosis: ${condition.ageAtDiagnosis}, Treatment: ${condition.treatment}<br>`;
+            // Clear existing summary content
+            const summaryContent = document.getElementById('summary-content');
+            summaryContent.innerHTML = ''; // Clear existing content
+
+            // Create table rows for each health condition
+            healthConditions.forEach(condition => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${condition.disease}</td>
+                    <td>${condition.ageAtDiagnosis}</td>
+                    <td>${condition.treatment}</td>
+                `;
+                summaryContent.appendChild(row);
             });
 
-            document.getElementById('summary-content').innerHTML = summaryContent;
+            // Show summary section
             document.getElementById('summary').style.display = 'block';
         });
 

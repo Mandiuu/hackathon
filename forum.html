@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Health Roots Forum">
+    <meta property="og:description" content="Join discussions about genealogic diseases and find support.">
+    <title>Health Roots - Forum</title>
+    <link rel="icon" href="root_icon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #F6F3EA;
+            margin: 0;
+            font-size: 20px;
+            font-family: 'Barlow', 'Times New Roman', Times, serif;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .header {
+            background-color: #23967F;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative; 
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-family: 'Lora', serif;
+        }
+
+        .auth-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .auth-buttons button {
+            background-color: #fff;
+            color: #23967F;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
+        .auth-buttons button:hover {
+            background-color: #23967F;
+            color: white;
+        }
+
+        .forum-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .categories {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .categories ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .categories ul li {
+            margin: 10px 0;
+        }
+
+        .categories ul li a {
+            text-decoration: none;
+            color: #23967F;
+            font-size: 1em;
+        }
+
+        .forum-content {
+            flex: 3;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        .search-bar button {
+            background-color: #23967F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+    
+        .featured-post {
+    background-color: #f9f9f9;
+    padding: 15px; 
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    min-height: 100px; 
+    position: relative;
+}
+
+.featured-post h4 {
+    font-size: 1.5em;
+    color: #23967F;
+    margin: 0; 
+    padding-bottom: 10px; 
+}
+
+.featured-post p {
+    margin: 0;
+    font-size: 1em;
+    color: #333;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Forum</h1>
+
+        <div class="auth-buttons">
+            <button onclick="window.location.href='index.html'">Home</button>
+        </div>
+    </div>
+
+    <div class="forum-container">
+
+        <div class="categories">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Awareness</a></li>
+                <li><a href="#">Caregiving</a></li>
+                <li><a href="#">Coping</a></li>
+                <li><a href="#">Cost</a></li>
+                <li><a href="#">Depression</a></li>
+                <li><a href="#">Work & Employment</a></li>
+                <li><a href="#">Diagnosis</a></li>
+                <li><a href="#">Diet & Nutrition</a></li>
+                <li><a href="#">Exercise</a></li>
+                <li><a href="#">Friends & Family</a></li>
+                <li><a href="#">Healthcare Team</a></li>
+                <li><a href="#">Insurance & Disability</a></li>
+                <li><a href="#">Surgery</a></li>
+                <li><a href="#">Mental Health</a></li>
+                <li><a href="#">Newly Diagnosed</a></li>
+                <li><a href="#">Research & Clinical Trials</a></li>
+                <li><a href="#">Side Effects</a></li>
+                <li><a href="#">Sleep</a></li>
+                <li><a href="#">Symptoms</a></li>
+                <li><a href="#">Tips & Advice</a></li>
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Treatment</a></li>
+            </ul>
+        </div>
+
+        <div class="forum-content">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for topics...">
+                <button>Search</button>
+            </div>
+
+            <div class="featured-posts">
+                <div class="featured-post">
+                    <h4>Best Treatment for Hemophilia</h4>
+                    <p>I'm looking for advice on the best treatments available for Hemophilia.</p>
+                </div>
+                <div class="featured-post">
+                    <h4>What is Neurofibromatosis type 1?</h4>
+                    <p>Does anyone knows more about Neurofibromatosis type 1 and its symptoms?</p>
+                </div>
+                <div class="featured-post">
+                    <h4>My Son's Haemophilia</h4>
+                    <p>I'm seeking advice on how to care for my son with Haemophilia.</p>
+                </div>
+                <div class="featured-post">
+                    <h4>Advice on Dealing with Turner Syndrome</h4>
+                    <p>Hi everyone, I'm looking for advice on how to manage Turner syndrome effectively.</p>
+                </div>
+                <div class="featured-post">
+                    <h4>Is Albinism Related to Genetics?</h4>
+                    <p>Is Albinism is genetically inherited and how it works?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Family Health Roots. All Rights Reserved.</p>
+    </div>
+
+</body>
+
+</html>

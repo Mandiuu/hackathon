@@ -33,7 +33,7 @@
         .header.with-image-bg {
             position: relative;
             margin-bottom: 2em;
-            min-height: 85vh; 
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -41,11 +41,11 @@
             padding-top: 20px;
             color: white;
             text-shadow: 0px 0px 30px black, 0px 0px 10px rgba(0, 0, 0, 0.5);
-            background-image: url('roots.jpg'); /* Replace with your image */
-            background-size: 100% 100%; /* Scale the image to cover the entire background */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    min-height: 100vh; /* Increase the height of the header */
+            background-image: url('roots.jpg');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
         }
 
         .header .content {
@@ -174,26 +174,124 @@
         }
 
         .welcome-text {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Increased space between header and text */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.2em;
+            line-height: 1.6em;
+            color: #333;
+        }
+
+        .welcome-text p {
+            margin-bottom: 20px;
+        }
+
+        .welcome-text strong {
+            color: #23967F;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .carousel-item {
+    min-width: 100%;
+    padding: 40px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
     max-width: 800px;
-    margin-left: auto; 
-    margin-right: auto; 
+    margin: 0 auto;
+    display: flex; /* Make the container a flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-end; /* Push the content to the bottom */
+}
+
+.carousel-item p {
     font-size: 1.2em;
-    line-height: 1.6em;
     color: #333;
+    line-height: 1.5em;
+    max-width: 90%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
 }
 
-.welcome-text p {
-    margin-bottom: 20px;
-}
 
-.welcome-text strong {
-    color: #23967F;
-}
+        .carousel-item .source {
+            font-size: 0.8em;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: #666;
+        }
+
+        .carousel-item h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #23967F;
+        }
+
+        .carousel-item.first-item {
+            background: linear-gradient(135deg, #f5e6da, #d9bfa8);
+            padding: 10px 30px 30px 30px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item.second-item {
+            background: linear-gradient(135deg, #d1f0f6, #a1d0dc);
+            padding: 10px 30px 30px 30px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item.third-item {
+            background: linear-gradient(135deg, #e7f2e9, #c2dfc8);
+            padding: 10px 30px 30px 30px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .carousel-dots .dot {
+            height: 12px;
+            width: 12px;
+            margin: 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .carousel-dots .dot.active {
+            background-color: #23967F;
+        }
     </style>
 </head>
 
@@ -213,31 +311,47 @@
     <div class="content">
         <div class="welcome-text">
             <p>
-                <strong>Roots</strong> makes it easy to understand and manage your family’s health story. Build a family health tree, track hereditary conditions, and stay ahead of potential health risks, all while keeping your privacy fully in your control. Customize who can see your information, and connect privately with close family members for confidential conversations.
+                <strong>Roots</strong> makes it easy to understand and manage your family’s health story. Build a family health tree, track hereditary conditions, and stay ahead of potential health risks, all while keeping your privacy fully in your control.
             </p>
             <p>
-                You are not alone! Join our anonymous community forum to connect with others facing similar health challenges. With strong data protection and privacy features like encryption and anonymization, <strong>Roots</strong> offers a safe space for you and your family to explore your health history.
+                You are not alone! Join our anonymous community forum to connect with people facing similar health challenges. With strong data protection and privacy features like encryption and anonymization, <strong>Roots</strong> offers a safe space for you and your family to explore your health history.
             </p>
-            
         </div>
-    </div>        
+    </div>
 
-        <div class="family-tree">
-            <h2>Your Family Tree</h2>
-            <img src="family-tree-placeholder.jpg" alt="Family Tree Visualization" style="max-width: 100%;">
+    <div class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-item first-item">
+                <p>
+                    People who know their family health history are 2 to 5 times more likely to take preventive actions.
+                </p>
+            </div>
+            <div class="carousel-item second-item">
+                <p>Over 90% of Americans Have a Preventable Risk Factor
+                   
+                </p>
+            </div>
+            <div class="carousel-item third-item">
+                <p>Chronic Diseases Cause 7 in 10 Deaths in the US</p>
+            </div>
         </div>
 
-        <div class="forum-link">
-            <p>Join the conversation with others who share your condition:</p>
-            <a href="forum.html">Visit the Anonymous Forum</a>
+        <div class="carousel-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
         </div>
+    </div>
+
+    <div class="forum-link">
+        <p>Join the conversation with others who share your condition:</p>
+        <a href="forum.html">Visit the Anonymous Forum</a>
     </div>
 
     <div class="footer">
         <p>&copy; 2024 Family Health Roots. All Rights Reserved.</p>
     </div>
 
-    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -255,50 +369,53 @@
     </div>
 
     <script>
-    // Handle the button redirects to respective pages
+    const carouselContainer = document.querySelector('.carousel-container');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    function updateCarousel() {
+        carouselContainer.style.transition = 'transform 1s ease-in-out'; 
+        carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+    }
+
+    function goToNextSlide() {
+        currentIndex = (currentIndex + 1) % dots.length;
+        updateCarousel();
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(goToNextSlide, 5000); 
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    startAutoSlide();
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopAutoSlide(); 
+            currentIndex = index;
+            updateCarousel();
+            startAutoSlide(); 
+        });
+    });
+
     document.getElementById('create-btn').addEventListener('click', function () {
-        window.location.href = 'login.html';  // Create Account page
+        window.location.href = 'login.html';  
+    });
+
+    document.getElementById('login-btn').addEventListener('click', function () {
+        window.location.href = 'login.html';  
     });
 
     document.getElementById('forum-btn').addEventListener('click', function () {
-        window.location.href = 'forum.html';  // Forum page
+        window.location.href = 'forum.html';  
     });
-
-    // Get modal element
-    var modal = document.getElementById("loginModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("login-btn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the "Log In" button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    // Handle login form submission
-    document.getElementById('login-form').addEventListener('submit', function(e) {
-        e.preventDefault();  // Prevent the default form submission
-
-        // After successful login, redirect to the profile page
-        window.location.href = 'profile.html'; // Redirect to profile.html
-    });
-
-
     </script>
 </body>
 
