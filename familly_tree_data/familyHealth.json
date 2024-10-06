@@ -1,0 +1,28 @@
+{
+    "SMT_001":
+    {
+        "first_name": "John",
+        "last_name": "Smith",
+        "sex": "MALE",
+        "dob": "05 12 1977",
+        "father": null,
+        "mother": null,
+        "children": [
+        "SMT_003"
+        ],
+        "health" : ["E1010","E663"]
+    },
+
+    "SMT_002":{
+        "first_name": "John",
+        "last_name": "Smith",
+        "id": "SMT_001",
+        "dob": "05 12 1977",
+        "father": "SMT_001",
+        "mother": null,
+        "children": [
+        "SMT_002"
+        ],
+        "health" : ["E1010","E663"]
+    }
+}
