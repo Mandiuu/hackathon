@@ -11,7 +11,6 @@
     <title>Roots - Create an Account</title>
     <link rel="icon" href="root_icon.png">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
 
@@ -85,7 +84,6 @@
             padding: 4em 0;
         }
 
-        /* Position the Home and Log In buttons */
         .home-button {
             position: absolute;
             top: 20px;
@@ -107,7 +105,6 @@ input[type="date"] {
     box-sizing: border-box; /* Ensure padding is included in total width */
 }
 
-        /* Styling for generated User ID message */
         .message {
             font-size: 1em;
             color: #000000;
@@ -115,7 +112,6 @@ input[type="date"] {
             margin-top: 10px;
         }
 
-        /* Styling for error message */
         .error-message {
             color: red;
             font-size: 1em;
@@ -123,7 +119,6 @@ input[type="date"] {
             margin-top: 10px;
         }
 
-        /* Modal styles */
         #loginModal {
             display: none;
             position: fixed;
@@ -205,7 +200,6 @@ input[type="date"] {
         <p>&copy; 2024 Roots. All Rights Reserved.</p>
     </div>
 
-    <!-- The Modal -->
     <div id="loginModal" class="modal">
         <div id="modalContent">
             <span class="close">&times;</span>
@@ -223,31 +217,27 @@ input[type="date"] {
     </div>
 
     <script>
-        // Function to generate a user ID
         function generateUserId(firstName, lastName) {
             if (firstName && lastName) {
                 const initials = firstName.charAt(0).toLowerCase() + lastName.charAt(0).toLowerCase();
-                const randomNumber = Math.floor(1000 + Math.random() * 9000); // Generates a random 4-digit number
+                const randomNumber = Math.floor(1000 + Math.random() * 9000); 
                 return initials + randomNumber;
             }
             return '';
         }
 
-        // Function to format the date as MM/DD/YYYY
         function formatDateToMMDDYYYY(dateString) {
             const dateObj = new Date(dateString);
-            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // getMonth() is 0-based
+            const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
             const day = dateObj.getDate().toString().padStart(2, '0');
             const year = dateObj.getFullYear();
             return `${month}/${day}/${year}`;
         }
 
-        // Handle the Home button click and redirect to the homepage
         document.getElementById('home-btn').addEventListener('click', function () {
-            window.location.href = 'index.html';  // Redirect to homepage (index.html)
+            window.location.href = 'index.html';  
         });
 
-        // Handle form submission to create a new user
         document.getElementById('register-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -260,25 +250,22 @@ input[type="date"] {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const dob = document.getElementById('dob').value;
-            const formattedDob = formatDateToMMDDYYYY(dob);  // Format date to MM/DD/YYYY
+            const formattedDob = formatDateToMMDDYYYY(dob);  
             const placeOfBirth = document.getElementById('place-of-birth').value;
 
-            // Generate user ID
+            
             const userId = generateUserId(firstName, lastName);
 
             if (userId) {
                 console.log("Generated User ID: " + userId);
 
-                // Display User ID inside the form along with formatted DOB
                 const userIdMessage = document.createElement('p');
                 userIdMessage.className = 'message';
                 userIdMessage.textContent = `Your User ID is: ${userId}`;
                 document.getElementById('message-container').appendChild(userIdMessage);
 
-                // Simulate user creation (no actual backend)
                 console.log('User created successfully with ID:', userId);
             } else {
-                // Display error message inside the form
                 const errorMessage = document.createElement('p');
                 errorMessage.className = 'error-message';
                 errorMessage.textContent = 'Please enter a valid first name and last name.';
@@ -286,36 +273,30 @@ input[type="date"] {
             }
         });
 
-        // Get the modal
+       
         const modal = document.getElementById("loginModal");
 
-        // Get the button that opens the modal
         const btn = document.getElementById("login-btn");
 
-        // Get the <span> element that closes the modal
         const span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
         btn.onclick = function() {
             modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
 
-        // Redirect to profile.html when the Log In button inside the modal is clicked
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            window.location.href = 'profile.html';  // Redirect to profile.html
+            window.location.href = 'profile.html';  
         });
     </script>
 </body>
