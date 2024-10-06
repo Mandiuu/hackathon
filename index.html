@@ -29,12 +29,32 @@
             margin: auto;
         }
 
-        .header {
-            padding: 3em 0;
+        /* New header style with background image */
+        .header.with-image-bg {
             position: relative;
+            margin-bottom: 2em;
+            min-height: 85vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 20px;
+            color: white;
+            text-shadow: 0px 0px 30px black, 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-image: url('roots.jpg'); /* Replace with your image */
+            background-size: 100% 100%; /* Scale the image to cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    min-height: 100vh; /* Increase the height of the header */
         }
 
-        h1 {
+        .header .content {
+            max-width: 640px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .header h1 {
             font-family: 'Bungee Shade', Georgia, serif;
             font-weight: bold;
             font-size: 8em;
@@ -109,7 +129,7 @@
         }
 
         .auth-buttons button {
-            margin-left: 5px;  /* Reduce space between buttons */
+            margin-left: 5px;
         }
 
         @media (max-width: 640px) {
@@ -121,22 +141,22 @@
 
         /* Modal styles */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
         }
 
         .modal-content {
             background-color: #fff;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 15% auto;
             padding: 20px;
             border-radius: 10px;
-            width: 30%; /* Could be more or less, depending on screen size */
+            width: 30%;
         }
 
         .close {
@@ -152,38 +172,55 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .welcome-text {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Increased space between header and text */
+    max-width: 800px;
+    margin-left: auto; 
+    margin-right: auto; 
+    font-size: 1.2em;
+    line-height: 1.6em;
+    color: #333;
+}
+
+.welcome-text p {
+    margin-bottom: 20px;
+}
+
+.welcome-text strong {
+    color: #23967F;
+}
     </style>
 </head>
 
 <body>
-    <div class="header">
+    <div class="header with-image-bg">
         <h1>Health Roots</h1>
         <p class="subhead">Track your family’s health and discover potential genetic conditions.</p>
 
         <!-- Top-right buttons -->
         <div class="auth-buttons">
-            <button id="home-btn">Home</button>
             <button id="create-btn">Create Account</button>
             <button id="login-btn">Log In</button>
-            <button id="profile-btn">Profile</button>
             <button id="forum-btn">Forum</button>
         </div>
     </div>
 
     <div class="content">
-        <form id="health-data-form">
-            <h2>Create your user!</h2>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-
-            <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" required>
-
-            <label for="conditions">Health Conditions</label>
-            <input type="text" id="conditions" name="conditions" placeholder="Enter any known conditions">
-
-            <button type="submit">Submit</button>
-        </form>
+        <div class="welcome-text">
+            <p>
+                <strong>Roots</strong> makes it easy to understand and manage your family’s health story. Build a family health tree, track hereditary conditions, and stay ahead of potential health risks, all while keeping your privacy fully in your control. Customize who can see your information, and connect privately with close family members for confidential conversations.
+            </p>
+            <p>
+                You are not alone! Join our anonymous community forum to connect with others facing similar health challenges. With strong data protection and privacy features like encryption and anonymization, <strong>Roots</strong> offers a safe space for you and your family to explore your health history.
+            </p>
+            
+        </div>
+    </div>        
 
         <div class="family-tree">
             <h2>Your Family Tree</h2>
@@ -218,48 +255,50 @@
     </div>
 
     <script>
-        // Handle the button redirects to respective pages
-        document.getElementById('home-btn').addEventListener('click', function () {
-            window.location.href = 'index.html';  // Home page
-        });
+    // Handle the button redirects to respective pages
+    document.getElementById('create-btn').addEventListener('click', function () {
+        window.location.href = 'login.html';  // Create Account page
+    });
 
-        document.getElementById('create-btn').addEventListener('click', function () {
-            window.location.href = 'login.html';  // Create Account page
-        });
+    document.getElementById('forum-btn').addEventListener('click', function () {
+        window.location.href = 'forum.html';  // Forum page
+    });
 
-        document.getElementById('profile-btn').addEventListener('click', function () {
-            window.location.href = 'profile.html';  // Profile page
-        });
+    // Get modal element
+    var modal = document.getElementById("loginModal");
 
-        document.getElementById('forum-btn').addEventListener('click', function () {
-            window.location.href = 'forum.html';  // Forum page
-        });
+    // Get the button that opens the modal
+    var btn = document.getElementById("login-btn");
 
-        // Get modal element
-        var modal = document.getElementById("loginModal");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("login-btn");
+    // When the user clicks the "Log In" button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 
-        // When the user clicks the "Log In" button, open the modal
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+    // Handle login form submission
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();  // Prevent the default form submission
+
+        // After successful login, redirect to the profile page
+        window.location.href = 'profile.html'; // Redirect to profile.html
+    });
+
+
     </script>
 </body>
 
